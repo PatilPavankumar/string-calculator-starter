@@ -29,4 +29,9 @@ class StringCalculatorShould {
     public void testTwoNumbersCommaDelimitted() {
     	assertEquals(3, stringCalculator.add("1,2"));
     }
+    
+    @Test
+    public void testUnknownAmmoutOfNumbersCommaDelimitted() {
+    	assertEquals(1+2+4+5+6+7, stringCalculator.add("1,2,4,5,6,7"));
+    }
 }

@@ -13,7 +13,7 @@ class StringCalculator {
     	}
     	else {
     		String[] numbers=input.split(",");
-    		return calculateSum(numbers[0],numbers[1]);
+    		return calculateSum(numbers);
     	}
     }
     private boolean isEmpty(String input) {
@@ -23,8 +23,14 @@ class StringCalculator {
     	return Integer.parseInt(input);
     }
     
-    private int calculateSum(String num1, String num2) {
-    	return Integer.parseInt(num1)+Integer.parseInt(num2);
+    private int calculateSum(String[] numbers) {
+    	int totalSum=0;
+    	for(String number: numbers)
+    	{
+    		totalSum+=Integer.parseInt(number);    		
+    	}
+    	
+    	return totalSum;
     }
 
 }

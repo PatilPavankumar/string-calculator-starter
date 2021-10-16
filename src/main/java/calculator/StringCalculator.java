@@ -2,6 +2,7 @@ package calculator;
 
 class StringCalculator {
 
+	private final String delimiters=",|\n";
     public int add(String input) {
     	if(isEmpty(input))
         {
@@ -12,7 +13,7 @@ class StringCalculator {
     		return convertToInt(input);
     	}
     	else {
-    		String[] numbers=input.split(",");
+    		String[] numbers=input.split(delimiters);
     		return calculateSum(numbers);
     	}
     }
@@ -27,7 +28,8 @@ class StringCalculator {
     	int totalSum=0;
     	for(String number: numbers)
     	{
-    		totalSum+=Integer.parseInt(number);    		
+    		if(!isEmpty(number.trim()))
+    			totalSum+=Integer.parseInt(number.trim());    		
     	}
     	
     	return totalSum;

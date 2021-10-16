@@ -81,4 +81,9 @@ class StringCalculatorShould {
     public void testMultipleDelimitedNumbers(){
     	assertEquals(6, stringCalculator.add("//[*][%]\n1*2%3"));
     }
+    
+    @Test
+    public void testMultipleDelimitedHavingAnyLengthNumbers(){
+    	assertEquals(6, stringCalculator.add("//[***][%%%]\n1***2%%%3"));
+    }
 }

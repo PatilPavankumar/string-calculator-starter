@@ -44,4 +44,26 @@ class StringCalculatorShould {
     public void testDifferentDelimitted() {
     	assertEquals(3, stringCalculator.add("//;\n1;2"));
     }
+    
+    @Test
+    public void testSingleNegativeNumberReturnsException() {
+    	//Single negative number
+    	try {
+    		stringCalculator.add("-1,2");
+    	}
+    	catch (IllegalArgumentException e){
+			assertEquals(e.getMessage(), "Negatives not allowed: -1");
+		}
+    }
+    
+    @Test
+    public void testMultipleNegativeNumberReturnsException() {
+    	//Multiple negative number
+    	try {
+    		stringCalculator.add("-1,2,-4,5,-3,8");
+    	}
+    	catch (IllegalArgumentException e){
+			assertEquals(e.getMessage(), "Negatives not allowed: -1,-4,-3");
+		}
+    }
 }

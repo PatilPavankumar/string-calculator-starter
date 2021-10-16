@@ -31,11 +31,23 @@ class StringCalculator {
     
     private int calculateSum(String[] numbers) {
     	int totalSum=0;
+    	String negNumberStr="";
     	for(String number: numbers)
     	{
+    		if(convertToInt(number) < 0){
+        		if(negNumberStr.equals(""))
+        			negNumberStr = number;
+        		else
+        			negNumberStr += ("," + number);
+        	}
+    		
     		if(!isEmpty(number.trim()))
-    			totalSum+=Integer.parseInt(number.trim());    		
+    			totalSum+=Integer.parseInt(number.trim()); 
     	}
+
+		if(!negNumberStr.equals("")){
+			throw new IllegalArgumentException("Negatives not allowed: " + negNumberStr);
+		}
     	
     	return totalSum;
     }

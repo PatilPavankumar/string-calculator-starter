@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.ArrayList;
+
 class StringCalculator {
 
     public int add(String input) {
@@ -13,14 +15,25 @@ class StringCalculator {
     	}
     	else {
     		
-    		String delimiters = ",";
-			if(input.matches("//(.*)\n(.*)")){
-				delimiters = Character.toString(input.charAt(2));
-				input = input.substring(4);
-			}
-    		String[] numbers=input.split(delimiters + "|\n");
+    		String delimiters = "";
+    		ArrayList<String> objList=getDelimiters(input);
+    		delimiters="["+objList.get(0)+",|\n]";
+    		String[] numbers=objList.get(1).split(delimiters);
     		return calculateSum(numbers);
     	}
+    }
+    
+    private ArrayList<String> getDelimiters(String input){
+    	String tempDelimitor="";
+    	if(input.indexOf("//")==0)
+    	{
+    		tempDelimitor=input.substring(input.indexOf("//")+2, input.indexOf("\n"));
+    		input=input.substring(input.indexOf("\n")+1);
+    	}
+    	ArrayList<String> objList= new ArrayList<String>();
+    	objList.add(tempDelimitor);
+    	objList.add(input);
+    	return objList;
     }
     private boolean isEmpty(String input) {
     	return input.isEmpty();
@@ -34,15 +47,19 @@ class StringCalculator {
     	String negNumberStr="";
     	for(String number: numbers)
     	{
-    		if(convertToInt(number) < 0){
-        		if(negNumberStr.equals(""))
-        			negNumberStr = number;
-        		else
-        			negNumberStr += ("," + number);
-        	}
-    		
-    		if(!isEmpty(number.trim()) && convertToInt(number) < 1000)
-    			totalSum+=Integer.parseInt(number.trim()); 
+    		if(!isEmpty(number.trim()))
+    		{
+    			if(convertToInt(number) < 0){
+            		if(negNumberStr.equals(""))
+            			negNumberStr = number;
+            		else
+            			negNumberStr += ("," + number);
+            	}
+        		
+        		if(convertToInt(number) < 1000)
+        			totalSum+=Integer.parseInt(number.trim());
+    		}
+    		 
     	}
 
 		if(!negNumberStr.equals("")){

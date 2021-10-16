@@ -39,4 +39,9 @@ class StringCalculatorShould {
     public void testTwoNumbersNewLineDelimitted() {
     	assertEquals(6, stringCalculator.add("1\n2,3"));
     }
+    
+    @Test
+    public void testDifferentDelimitted() {
+    	assertEquals(3, stringCalculator.add("//;\n1;2"));
+    }
 }

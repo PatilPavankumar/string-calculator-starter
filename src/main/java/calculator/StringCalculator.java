@@ -2,7 +2,6 @@ package calculator;
 
 class StringCalculator {
 
-	private final String delimiters=",|\n";
     public int add(String input) {
     	if(isEmpty(input))
         {
@@ -13,7 +12,13 @@ class StringCalculator {
     		return convertToInt(input);
     	}
     	else {
-    		String[] numbers=input.split(delimiters);
+    		
+    		String delimiters = ",";
+			if(input.matches("//(.*)\n(.*)")){
+				delimiters = Character.toString(input.charAt(2));
+				input = input.substring(4);
+			}
+    		String[] numbers=input.split(delimiters + "|\n");
     		return calculateSum(numbers);
     	}
     }

@@ -41,7 +41,7 @@ class StringCalculator {
         			negNumberStr += ("," + number);
         	}
     		
-    		if(!isEmpty(number.trim()))
+    		if(!isEmpty(number.trim()) && convertToInt(number) < 1000)
     			totalSum+=Integer.parseInt(number.trim()); 
     	}
 
